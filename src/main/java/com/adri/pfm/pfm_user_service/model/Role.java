@@ -12,10 +12,11 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Table(name="PUS_ROLE")
+@SequenceGenerator(name = "ROLE_PK", sequenceName = "SEQ_ROLE")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "ROLE_PK")
     private long id;
 
     @Column(unique = true, nullable = false)

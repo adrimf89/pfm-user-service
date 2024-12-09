@@ -22,12 +22,12 @@ public class UserController {
     }
 
     @GetMapping("/{userAccountId}")
-    public ResponseEntity<UserAccountDTO> findById(@PathVariable long userAccountId) {
+    public ResponseEntity<UserAccountDTO> findById(@PathVariable("userAccountId") long userAccountId) {
         return ResponseEntity.ok(userAccountService.findByUserAccountId(userAccountId));
     }
 
     @GetMapping("/username/{username}")
-    public ResponseEntity<UserAccountDTO> findByUsername(@PathVariable String username) {
+    public ResponseEntity<UserAccountDTO> findByUsername(@PathVariable("username") String username) {
         return ResponseEntity.ok(userAccountService.findByUserAccountUsername(username));
     }
 }

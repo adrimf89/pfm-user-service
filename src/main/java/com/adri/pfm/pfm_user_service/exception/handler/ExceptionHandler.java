@@ -20,7 +20,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
                 request.getDescription(false));
-        log.error(HttpStatus.NOT_FOUND.toString(), ex);
+        //log.error(HttpStatus.NOT_FOUND.toString(), ex);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }

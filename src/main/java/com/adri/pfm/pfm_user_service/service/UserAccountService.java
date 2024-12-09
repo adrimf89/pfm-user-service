@@ -32,7 +32,7 @@ public class UserAccountService {
         log.info("Find user account by id {}", userAccountId);
         Optional<UserAccount> result = userAccountRepository.findById(userAccountId);
         return result.map(userAccountMapper::toUserAccountDTO)
-                .orElseThrow(() -> new ResourceNotFoundException("User account not found for id "+userAccountId));
+                .orElseThrow(() -> new ResourceNotFoundException("User account not found for id " + userAccountId));
     }
 
     public UserAccountDTO findByUserAccountUsername(String username) {
