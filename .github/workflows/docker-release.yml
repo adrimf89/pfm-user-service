@@ -3,7 +3,10 @@ name: Build and Tag Docker Image
 on:
   push:
     branches:
-      - dev
+      - dev   # First approach, the image would be created on every pull request to master only
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build-and-tag:
@@ -31,10 +34,10 @@ jobs:
         id: vars
         run: echo "SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
-      - name: Build and push Docker image
+      - name: Build and push multi-arch Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ env.SHORT_SHA }} .
-          docker push ghcr.io/${{ github.repository }}:${{ env.SHORT_SHA }}
+          # Build the Docker image for both amd64 and arm64 architectures
+          docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/${{ github.repository }}:${{ env.SHORT_SHA }} --push .
 
       - name: Create Git tag
         run: |
