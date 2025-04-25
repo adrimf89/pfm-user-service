@@ -1,12 +1,9 @@
-name: Build and Tag Docker Image
+name: Build Docker image and Tag version on Push to Master
 
 on:
   push:
     branches:
-      - dev   # First approach, the image would be created on every pull request to master only
-  pull_request:
-    branches:
-      - master
+      - master   # Docker image will be built and tagged on push to master branch
 
 jobs:
   build-and-tag:
